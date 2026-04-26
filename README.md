@@ -244,71 +244,66 @@ Preencha todas as seções abaixo de forma **clara, objetiva e técnica**.
 
 ### 👤 Identificação do Candidato
 
-- **Nome completo:**  
-- **GitHub:**  
+- **Nome completo:** Weslley Fernandes Souza
+- **GitHub:** https://github.com/thewesdev
 
 ---
 
 ## 1️⃣ Visão Geral da Solução
 
-Descreva, em poucas palavras:
+Meu projeto é um timer pomodoro com tempo de 25 minutos, mas sem a parte do descanço de 5 minutos.
 
-- Qual é o objetivo do seu projeto  
-- O que o sistema embarcado simulado faz  
-- Como o usuário interage com ele (se aplicável)
+quando o circuito é energizado um circulo é desenhado, o timer, logo em seguida, é esperado um clique dentro do circulo, se o clique for registrado, o timer começara a contar, o tempo corre sendo decrementado em baixo do circulo, e o circulo é preenchido com uma linha a cada 1 segundo.
+
+o usuário pode iniciar o timer clicando nele quando o timer não estiver correndo, se o timer já tiver sido iniciado e o usuário clicar, o timer será pausado, em caso de já estar pausado, o timer despausará.
 
 ---
 
 ## 2️⃣ Arquitetura do Sistema Embarcado
 
-Explique a arquitetura lógica do seu projeto, abordando:
+primeiramente, antes do loop, eu inicio algumas variáveis uteis, como as mais importantes sendo o display e o touch, que são de 2 arquivos que eu peguei de outro repositorio, clicando [aqui]() você encontrará o repositório em questão.
 
-- Fluxo principal do programa (`main.py`)  
-- Estrutura de estados, loops ou temporizações  
-- Como os componentes interagem entre si  
+quando o loop começa, eu verifico se a tela já foi desenhada, se não tiver sido, ele desenha a tela, um circulo vazio e um texto escrito "25:00" logo abaixo.
 
-Se desejar, utilize tópicos ou um pequeno diagrama em texto.
+depois eu verifico o touch, se o usuário tiver clicado, mas o timer não tiver sido iniciado, o timer é iniciado, se o timer já estivesse iniciado, ele será pausado, e se já tiver iniciado e estiver pausado, ele será despausado.
+
+logo em seguida eu verifico se o timer está iniciado e não pausado, se já tiver corrido 1 segundo, ou em caso de atraso, mais de 1 segundo, eu decremento o tempo que está para ser descontado e desenho uma nova linha no circulo, para preenche-lo, e o tempo na tela é atualizado.
+
+se o timer for menor ou igual a zero, a tela é apagada, e todos os booleanos setados antes do loop tem seus valores definidos como false, assim como foram setados, o que fará com que o comportamente esperado seja de que o circuito tivesse acabado de ser energizado.
 
 ---
 
 ## 3️⃣ Componentes Utilizados na Simulação
 
-Liste os principais componentes definidos no `diagram.json`, por exemplo:
+foi usado um circuito esp32 devkit c v4, um protoboard e um ili9341 cap touch.
 
-- Tipo de placa utilizada  
-- LEDs, botões, sensores, atuadores, etc.  
-- Função de cada componente no sistema  
+o ili9341 é o display usado, com pinos usados para o desenho no display e outros pinos para o touch, para desenho se usa pinos referentes a interface spi, e para o touch a interface i2c.
 
 ---
 
 ## 4️⃣ Decisões Técnicas Relevantes
 
-Explique brevemente decisões importantes tomadas durante o desenvolvimento, como:
+o código foi organizado em um loop principal responsável por controlar a interface, leitura de toque e atualização do temporizador.
 
-- Organização do código  
-- Uso de funções, estados ou constantes  
-- Estratégias para temporização ou controle lógico  
+a renderização inicial é feita apenas uma vez para evitar processamento desnecessário.
+
+eu utilizei variáveis de estado (has_timer_started, has_timer_paused, has_screen_drawned) para controlar o fluxo do sistema, permitindo iniciar, pausar e reiniciar o timer de forma simples e a variável last_touch evita múltiplos acionamentos causados pelo toque contínuo.
+
+a temporização foi implementada com time.ticks_ms() e time.ticks_diff(), garantindo que o timer funcione independentemente da velocidade do loop.
+
+para melhorar o desempenho, apenas partes específicas da tela são atualizadas, evitando redesenho a todo momento.
 
 ---
 
 ## 5️⃣ Resultados Obtidos
 
-Descreva o comportamento final do sistema:
-
-- O que funciona corretamente  
-- Quais requisitos foram atendidos  
-- Resultado observado na simulação do Wokwi  
+O comportamento final não foi possível de ser testado, pois o wokwi não simula o touch corretamente ou a lib que eu usei tem algum erro, o clique no display é contado, isso eu tenho certeza, pois quando clico, a simulação fica mais lenta, mas a lib não registra o click, eu usei prints na simulação para testar se algum parametro da lib era modificado, mas não acontecia nada, eu acredito que o wokwi não simule o touch infelizmente.  
 
 ---
 
 ## 6️⃣ Comentários Adicionais (Opcional)
 
-Utilize este espaço para comentar, se desejar:
-
-- Dificuldades encontradas  
-- Limitações da solução  
-- Melhorias que você faria com mais tempo  
-- Principais aprendizados durante o desafio  
+uma limitação clara é o wokwi, ele aparentemente não simulou direito o touch.
 
 ---
 

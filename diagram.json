@@ -1,7 +1,60 @@
 {
   "version": 1,
-  "author": "Uri Shaked",
+  "author": "Anonymous maker",
   "editor": "wokwi",
-  "parts": [ { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 0, "attrs": {} } ],
-  "connections": [ [ "esp:TX", "$serialMonitor:RX", "", [] ], [ "esp:RX", "$serialMonitor:TX", "", [] ] ]
+  "parts": [
+    { "type": "wokwi-breadboard-half", "id": "bb1", "top": 35.4, "left": 223.6, "attrs": {} },
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": 28.8,
+      "left": 561.64,
+      "attrs": { "env": "micropython-20231227-v1.22.0" }
+    },
+    {
+      "type": "board-ili9341-cap-touch",
+      "id": "lcd1",
+      "top": -200.84,
+      "left": 220.42,
+      "attrs": {}
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "bb1:bp.1", "bb1:2t.e", "red", [ "v0" ] ],
+    [ "bb1:bn.2", "bb1:3t.e", "black", [ "v0" ] ],
+    [ "bb1:9t.e", "bb1:2t.e", "red", [ "v0" ] ],
+    [ "bb1:9t.e", "lcd1:LED", "red", [ "v0" ] ],
+    [ "esp:3V3", "bb1:bp.25", "red", [ "h-19.05", "v163.2" ] ],
+    [ "esp:GND.1", "bb1:bn.25", "black", [ "h-9.45", "v48" ] ],
+    [ "bb1:8t.e", "lcd1:SCK", "green", [ "v0" ] ],
+    [ "bb1:7t.e", "lcd1:MOSI", "green", [ "v0" ] ],
+    [ "esp:2", "bb1:6t.e", "green", [ "h19.2", "v76.8", "h-384" ] ],
+    [ "bb1:6t.e", "lcd1:D/C", "green", [ "v0" ] ],
+    [ "esp:4", "bb1:4t.e", "green", [ "h38.4", "v115.2", "h-422.4" ] ],
+    [ "esp:16", "bb1:5t.e", "green", [ "h28.8", "v115.2", "h-403.2" ] ],
+    [ "esp:18", "bb1:8t.e", "green", [ "h48", "v163.2", "h-393.6" ] ],
+    [ "esp:23", "bb1:7t.e", "green", [ "h9.6", "v192", "h-364.8" ] ],
+    [ "bb1:5t.e", "lcd1:RST", "green", [ "v0" ] ],
+    [ "bb1:4t.e", "lcd1:CS", "green", [ "v0" ] ],
+    [ "bb1:3t.e", "lcd1:GND", "black", [ "v0" ] ],
+    [ "bb1:2t.e", "lcd1:VCC", "red", [ "v0" ] ],
+    [ "lcd1:VCC", "bb1:2t.a", "", [ "$bb" ] ],
+    [ "lcd1:GND", "bb1:3t.a", "", [ "$bb" ] ],
+    [ "lcd1:CS", "bb1:4t.a", "", [ "$bb" ] ],
+    [ "lcd1:RST", "bb1:5t.a", "", [ "$bb" ] ],
+    [ "lcd1:D/C", "bb1:6t.a", "", [ "$bb" ] ],
+    [ "lcd1:MOSI", "bb1:7t.a", "", [ "$bb" ] ],
+    [ "lcd1:SCK", "bb1:8t.a", "", [ "$bb" ] ],
+    [ "lcd1:LED", "bb1:9t.a", "", [ "$bb" ] ],
+    [ "lcd1:MISO", "bb1:10t.a", "", [ "$bb" ] ],
+    [ "lcd1:SCL", "bb1:11t.a", "", [ "$bb" ] ],
+    [ "lcd1:SDA", "bb1:12t.a", "", [ "$bb" ] ],
+    [ "esp:22", "bb1:11t.e", "green", [ "h19.2", "v172.8", "h-336" ] ],
+    [ "bb1:11t.e", "lcd1:SCL", "green", [ "v0" ] ],
+    [ "esp:21", "bb1:12t.e", "green", [ "h28.8", "v201.6", "h-336" ] ],
+    [ "bb1:12t.e", "lcd1:SDA", "green", [ "v0" ] ]
+  ],
+  "dependencies": {}
 }
