@@ -1232,8 +1232,6 @@ class Touch:
 
 
 
-from ili9341 import color565
-
 COLORS_WHITE = color565(255, 255, 255)
 COLORS_BLACK = color565(0, 0, 0)
 
