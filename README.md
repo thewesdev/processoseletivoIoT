@@ -261,7 +261,7 @@ o usuário pode iniciar o timer clicando nele quando o timer não estiver corren
 
 ## 2️⃣ Arquitetura do Sistema Embarcado
 
-primeiramente, antes do loop, eu inicio algumas variáveis uteis, como as mais importantes sendo o display e o touch, que são de 2 arquivos que eu peguei de outro repositorio, clicando [aqui]() você encontrará o repositório em questão.
+primeiramente, antes do loop, eu inicio algumas variáveis uteis, como as mais importantes sendo o display e o touch, que são de 2 arquivos que eu peguei de outro repositorio, clicando [aqui](https://github.com/hlf20010508/micropython-ili9341-ft6206) você encontrará o repositório em questão.
 
 quando o loop começa, eu verifico se a tela já foi desenhada, se não tiver sido, ele desenha a tela, um circulo vazio e um texto escrito "25:00" logo abaixo.
 
